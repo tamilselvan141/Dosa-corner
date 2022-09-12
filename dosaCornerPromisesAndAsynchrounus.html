@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const orderDetails = {}
+
+        // Function 1 : Get what type of dosa the customer want
+
+        function getBatterType() {
+            alert("We have completely customized dosas\n\nYou can choose each items from the batter to the toppings")
+            for (iteration = 0; iteration < 1; iteration++) {
+                batterType = prompt(`What type of dosa batter you want?\n\n 1.Rice\n 2.Wheet\n 3.Neer\n 4.Rava`).toLowerCase()
+                if ((batterType == "rice") || (batterType == "wheet") || (batterType == "neer") || (batterType == "rava")) {
+                    orderDetails.batter = batterType
+                } else if ((batterType == "")) {
+                    alert("You have entered nothing\n\nPlease enter your answer again")
+                    iteration--
+                } else {
+                    alert(`${batterType} is not in our menu\n\nPlease enter only the types mentioned in the menu`)
+                    iteration--
+                }
+            }
+        }
+
+        // Function 2 : Get what type of topping the customer want
+
+        function getToppingType() {
+            for (iteration = 0; iteration < 1; iteration++) {
+                toppingType = prompt("What kind of topping you want to add in the dosa ?\n\n 1.Onion\n 2.Carrot\n 3.Channa masala\n 4.Potato\n 5.Nothing").toLowerCase()
+                if ((toppingType == "onion") || (toppingType == "carrot") || (toppingType == "channa masala") || (toppingType == "potato") || (toppingType == "nothing")) {
+                    orderDetails.topping = toppingType
+                } else if ((toppingType == "")) {
+                    alert("You have entered nothing\n\nPlease enter your answer again")
+                    iteration--
+                } else {
+                    alert(`${toppingType} is not in our menu\n\nPlease enter only the types mentioned in the menu`)
+                    iteration--
+                }
+            }
+        }
+
+        // Function 3 : Ask the customer whether he/she wants ghee
+
+        function getGhee() {
+            for (iteration = 0; iteration < 1; iteration++) {
+                gheeChoice = prompt("Do you want gee ?\n\nPlesse enter ( Yes / No )").toLowerCase()
+                if ((gheeChoice == "yes")) {
+                    orderDetails.ghee = ("✔️")
+                } else if ((gheeChoice == "no")) {
+                    orderDetails.ghee = ("❌")
+                } else if ((gheeChoice == "")) {
+                    alert("You have entered nothing\n\nPlease enter your answer again")
+                    iteration--
+                } else {
+                    alert("Invalid input\n\nPlease enter only Yes or No")
+                    iteration--
+                }
+            }
+        }
+
+        // Function 4 : Ask the customer whether he/she wants cheese to be added
+
+        function getCheese() {
+            for (iteration = 0; iteration < 1; iteration++) {
+                cheeseChoice = prompt("Do you want cheese ?\n\nPlesse enter ( Yes / No )").toLowerCase()
+                if ((cheeseChoice == "yes")) {
+                    orderDetails.cheese = ("✔️")
+                } else if ((cheeseChoice == "no")) {
+                    orderDetails.cheese = ("❌")
+                } else if ((cheeseChoice == "")) {
+                    alert("You have entered nothing\n\nPlease enter your answer again")
+                    iteration--
+                }
+                else {
+                    alert("Invalid input\n\nPlease enter only Yes or No")
+                    iteration--
+                }
+            }
+        }
+
+        // Function 5 : Ask the customer whether he/she wants " Idly Powder "
+
+        function getIdlyPowder() {
+            for (iteration = 0; iteration < 1; iteration++) {
+                idlyPowderChoice = prompt("Do you want idly powder ?\n\nPlesse enter ( Yes / No )").toLowerCase()
+                if ((idlyPowderChoice == "yes")) {
+                    orderDetails.idlyPowder = ("✔️")
+                } else if ((idlyPowderChoice == "no")) {
+                    orderDetails.idlyPowder = ("❌")
+                } else if ((idlyPowderChoice == "")) {
+                    alert("You have entered nothing\n\n Please enter your answer again")
+                    iteration--
+                }
+                else {
+                    alert("Invalid input\n\n Please enter only Yes or No")
+                    iteration--
+                }
+            }
+        }
+
+        // Function 6 : Print text
+
+        function printThanksMessageOne() {
+            document.write(`<i><<< Thanks for ordering >>></i>`, "<br><br>")
+            document.write(`<i>>>> Please wait for a while .......</i>`, "<br><br>")
+            setTimeout(() => {
+                document.write("<hr><br>")
+            }, 1000)
+        }
+
+        // Function 7 : Print text and table of the order details
+
+        function showOrderDetails() {
+            document.write(`<b><i> YOUR ORDER DETAILS</i></b>`, "<br><br>")
+            for (types in orderDetails) {
+                showTypeName = types
+                showType = (orderDetails[types])
+                document.write(`<b><i>${showTypeName}</i></b> : <i>${showType}</i>`, "<br>")
+            }
+        }
+
+        // Function 8 : Print text
+
+        function printWaitMesssage() {
+            document.write("<br>", `<i>Please wait for 5 minutes to get your order served 🍽️</i>`, "<br><br>")
+        }
+
+        // Function 9 : Print thanks text
+
+        function printThanksMessageTwo() {
+            document.write(`<b><br><i>_____________ Thank you _____________</i></b>`, "<br><br>")
+
+        }
+
+        // Function 10 : Callback function
+
+        function takeOrder(batter, topping, ghee, cheese, idlyPowder, thanksMessageOne, showDetails, waitMessage, thanksMessageTwo) {
+            alert(`Welcom to ARUS DOSA CORNER\n\nPress 'ok' to proceed further`)
+            batter()
+            topping()
+            ghee()
+            cheese()
+            idlyPowder()
+            setTimeout(() => {
+                thanksMessageOne()
+                setTimeout(() => {
+                    showDetails()
+                    setTimeout(() => {
+                        thanksMessageTwo()
+                        setTimeout(() => {
+                            waitMessage()
+                        }, 1000)
+                    }, 1000)
+                }, 3000)
+            }, 1000)
+        }
+
+        // Function 11 : Make decision base upon the availability of the hotel
+
+        function takeHotelOrder() {
+            let shopPromise = new Promise(function (resolve, reject) {
+                hotelIsOpen = true
+                if (hotelIsOpen) {
+                    resolve(alert("THE RESTAURANT IS OPEN 🟢\n\nPlease click the 'ok' button below"))
+                }
+                else
+                    reject(alert("SORRY, THE RESTAURANT IS CLOSED 🔴"))
+            })
+            return shopPromise;
+        }
+
+        takeHotelOrder()
+            .then(successHandler)
+            .catch(errorHandler);
+
+        // Function 12 : Do some operationj if hotel is open
+
+        function successHandler() {
+            setTimeout(() => {
+                takeOrder(getBatterType, getToppingType, getGhee, getCheese, getIdlyPowder, printThanksMessageOne, showOrderDetails, printWaitMesssage, printThanksMessageTwo)
+            }, 1000)
+        }
+
+        // Function 13 : Do some operationj if hotel is closed
+
+        function errorHandler() {
+            setTimeout(() => {
+                alert("PLEASE COME AGAIN LATER 🙏")
+            }, 1000)
+        }
+
+    </script>
+</body>
+
+</html>
